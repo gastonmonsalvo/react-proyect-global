@@ -1,14 +1,14 @@
-
 import Presentation from '@/components/Presentation'
+import TestimoniosSection from "@/components/TestimoniosSection";
 
 
-const index = () => {
+export default function Home () {
   return (
     <>
-      <Presentation />
-        
+      <Presentation/>
+      <main>
+        <TestimoniosSection/>
+      </main>
     </>
-  )
+  );
 }
-
-export default index
