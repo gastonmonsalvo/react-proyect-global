@@ -1,14 +1,16 @@
 import React, { useRef, useState, useEffect } from "react";
+import DatePerson from "./DatePerson";
 
 const cardsData = [
-{ name: "Karen Sandoval", role: "Frontend Dev", img: "/img/Karen.png.jpg" },
-{ name: "Ibar", role: "Frontend Dev", img: "/img/Ibar.png.jpg" },
-{ name: "Matias Dominguez", role: "Fullstack Dev", img: "/img/matias.png.jpg" },
-{ name: "Nathalie Flores", role: "Frontend Dev", img: "/img/natty.png.jpg" },
-{ name: "Brenda Romero", role: "Frontend Dev", img: "/img/brenda.png.jpg" },
-{ name: "Pedro Mendive", role: "Frontend Dev", img: "/img/pedro.png.jpg" },
-{ name: "Ianela Tenaglia", role: "Frontend & Backend Dev", img: "/img/ianela.png.jpg" },
-{ name: "Braian Martinez", role: "Frontend Dev", img: "/img/devAgotado.avif" } //Aun no tengo la imagen
+{ id:1, name: "Karen Sandoval", role: "Frontend Dev", img: "/img/Karen.png.jpg" },
+{ id:2, name: "Ibar Caubet", role: "Frontend & Backend Dev", img: "/img/Ibar.png.jpg" },
+{ id:3, name: "Matias Dominguez", role: "Fullstack Dev", img: "/img/matias.png.jpg" },
+{ id:4, name: "Gaston Monsalvo", role: "Frontend Dev", img: "/img/gaston.png.jpg" },
+{ id:5, name: "Nathalie Flores", role: "Frontend Dev", img: "/img/natty.png.jpg" },
+{ id:6, name: "Brenda Romero", role: "Frontend Dev", img: "/img/brenda.png.jpg" },
+{ id:7, name: "Pedro Mendive", role: "Frontend Dev", img: "/img/pedro.png.jpg" },
+{ id:8, name: "Ianela Tenaglia", role: "Frontend & Backend Dev", img: "/img/ianela.png.jpg" },
+{ id:9, name: "Braian Martinez", role: "Frontend Dev", img: "/img/braian.png.jpg" }
 
 ];
 
@@ -107,7 +109,7 @@ return (
             <img src={card.img} alt={`Foto de ${card.name}`} className="w-[150px] h-[150px] object-cover rounded-full mb-2" />
             <h3 className="text-black text-lg font-bold mt-1">{card.name}</h3>
             <p className="text-black text-sm opacity-80 mb-2">{card.role}</p>
-            <button className="mt-auto px-4 py-2 bg-purple-700 text-white rounded font-bold text-sm shadow hover:bg-purple-900 transition">Read more</button>
+            <DatePerson className="mt-auto px-4 py-2 bg-purple-700 text-white rounded font-bold text-sm shadow hover:bg-purple-900 transition" userId={card.id} />
             </div>
         ))}
         </div>
