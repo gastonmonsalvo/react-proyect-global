@@ -5,11 +5,12 @@ const cardsData = [
 { id:1, name: "Karen Sandoval", role: "Frontend Dev", img: "/img/Karen.png.jpg" },
 { id:2, name: "Ibar Caubet", role: "Frontend & Backend Dev", img: "/img/Ibar.png.jpg" },
 { id:3, name: "Matias Dominguez", role: "Fullstack Dev", img: "/img/matias.png.jpg" },
-{ id:4, name: "Nathalie Flores", role: "Frontend Dev", img: "/img/natty.png.jpg" },
-{ id:5, name: "Brenda Romero", role: "Frontend Dev", img: "/img/brenda.png.jpg" },
-{ id:6, name: "Pedro Mendive", role: "Frontend Dev", img: "/img/pedro.png.jpg" },
-{ id:7, name: "Ianela Tenaglia", role: "Frontend & Backend Dev", img: "/img/ianela.png.jpg" },
-{ id:8, name: "Braian Martinez", role: "Frontend Dev", img: "/img/devAgotado.avif" } //Aun no tengo la imagen
+{ id:4, name: "Gaston Monsalvo", role: "Frontend Dev", img: "/img/gaston.png" },
+{ id:5, name: "Nathalie Flores", role: "Frontend Dev", img: "/img/natty.png.jpg" },
+{ id:6, name: "Brenda Romero", role: "Frontend Dev", img: "/img/brenda.png.jpg" },
+{ id:7, name: "Pedro Mendive", role: "Frontend Dev", img: "/img/pedro.png.jpg" },
+{ id:8, name: "Ianela Tenaglia", role: "Frontend & Backend Dev", img: "/img/ianela.png.jpg" },
+{ id:9, name: "Braian Martinez", role: "Frontend Dev", img: "/img/braian.png" } //Aun no tengo la imagen
 
 ];
 

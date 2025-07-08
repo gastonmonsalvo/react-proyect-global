@@ -40,6 +40,18 @@ function DatePerson({ userId }) {
     },
     {
       id: 4,
+      name: "Gaston", 
+      lastname: "Monsalvo", 
+      miniBio:"Soy un estudiante de la Academia Global Academy ejerciendo la carrera de Full Stack Developer",
+      mainStack: "MERN Stack",
+      framework: "Next.js && Node.js",
+      experiencieLevel: "Senior",
+      timeAvailability: "Full Time",
+      modeTheWork: "Hibrido",
+      location: "Buenos Aires(GBA-CABA)"
+    },
+    {
+      id: 5,
       name: "Nathalie", 
       lastname: "Flores", 
       miniBio: "Soy una estudiante de la Academia Global Academy ejerciendo la carrera de Full Stack Developer",
@@ -51,7 +63,7 @@ function DatePerson({ userId }) {
       location: "Buenos Aires(GBA-CABA)"
     },
     {
-      id: 5,
+      id: 6,
       name: "Brenda", 
       lastname: "Romero", 
       miniBio: "Soy una estudiante de la Academia Global Academy ejerciendo la carrera de Full Stack Developer",
@@ -63,7 +75,7 @@ function DatePerson({ userId }) {
       location: "Buenos Aires(GBA-CABA)"
     },
     {
-      id: 6,
+      id: 7,
       name: "Pedro", 
       lastname: "Mendive", 
       miniBio: "Soy un estudiante de la Academia Global Academy ejerciendo la carrera de Full Stack Developer",
@@ -75,7 +87,7 @@ function DatePerson({ userId }) {
       location: "Buenos Aires(GBA-CABA)"
     },
     {
-      id: 7,
+      id: 8,
       name: "Ianela", 
       lastname: "Tenaglia", 
       miniBio: "Soy un estudiante de la Academia Global Academy ejerciendo la carrera de Full Stack Developer",
@@ -87,7 +99,7 @@ function DatePerson({ userId }) {
       location: "Buenos Aires(GBA-CABA)"
     },
     {
-      id: 8,
+      id: 9,
       name: "Braian", 
       lastname: "Martinez", 
       miniBio: "Soy un estudiante de la Academia Global Academy y por mi ausencia uno de los sospechosos por la desaparición de Maldonado, cuac",
