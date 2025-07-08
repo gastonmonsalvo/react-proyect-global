@@ -10,7 +10,7 @@ const cardsData = [
 { id:6, name: "Brenda Romero", role: "Frontend Dev", img: "/img/brenda.png.jpg" },
 { id:7, name: "Pedro Mendive", role: "Frontend Dev", img: "/img/pedro.png.jpg" },
 { id:8, name: "Ianela Tenaglia", role: "Frontend & Backend Dev", img: "/img/ianela.png.jpg" },
-{ id:9, name: "Braian Martinez", role: "Frontend Dev", img: "/img/braian.png" } //Aun no tengo la imagen
+{ id:9, name: "Braian Martinez", role: "Frontend Dev", img: "/img/braian.png" }
 
 ];
 
