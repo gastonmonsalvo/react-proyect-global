@@ -1,6 +1,6 @@
 
 
-import { ThemeProvider } from "../context/ThemeContext";
+import { ThemeProvider } from "../contexts/ThemeContext";
 import '../styles/globals.css';
 
 export default function App({ Component, pageProps }) {
