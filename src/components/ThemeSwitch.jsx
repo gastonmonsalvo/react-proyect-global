@@ -5,8 +5,13 @@ const ThemeSwitch = () => {
   const { darkMode, toggleDarkMode } = useContext(ThemeContext);
 
   return (
-    <button onClick={toggleDarkMode}>
-      {darkMode ? '🌞 Modo Claro' : '🌙 Modo Oscuro'}
+    <button className="flex flex-col text-center]" onClick={toggleDarkMode}>
+      <div className="text-2xl cursor-pointer">
+        {!darkMode ? '🌞' : '🌙'}
+      </div>
+      <div className="text-sm font-semibold cursor-pointer">
+        {!darkMode ? 'Modo Claro' : 'Modo Oscuro'}
+      </div>
     </button>
   );
 };

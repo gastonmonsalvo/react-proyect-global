@@ -1,6 +1,4 @@
 import { useState, useEffect } from "react";
-import Navbar from "./Navbar";
-import SwipeCards from "./Cards";
 
 const SplashScreen = ({ onFinish }) => {
   useEffect(() => {
@@ -37,10 +35,9 @@ const App = () => {
 
 const MainApp = () => {
   return (
-    <div>
-      <Navbar />
-      <SwipeCards />
-    </div>
+    <>
+  
+    </>
   );
 };
 

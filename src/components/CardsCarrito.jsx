@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useCarrito } from "@/contexts/CarritoContext";
 
 // Datos con imágenes y nombres
 const cardsData = [
@@ -14,6 +15,7 @@ const cardsData = [
   ];
 
 export default function CardsCarrito() {
+  
   // Estado con las cards que aún no fueron rechazadas ni contratadas
   const [cards, setCards] = useState(cardsData);
 
@@ -24,7 +26,9 @@ export default function CardsCarrito() {
   const [form, setForm] = useState({ salario: "", lenguaje: "", horas: "" });
 
   // Lista de contratos enviados
-  const [contracts, setContracts] = useState([]);
+
+  const { contracts, setContracts } = useCarrito();
+  //const [contracts, setContracts] = useState([]);
 
   // Rechaza y elimina una card del array
   const handleReject = (name) => {
@@ -57,7 +61,9 @@ export default function CardsCarrito() {
     <div className="p-4 bg-zinc-900 min-h-screen font-sans text-white">
       {/* Grid responsive con las cards */}
       <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
-        {cards.map(({ name, img }, index) => (
+        {cards
+        .filter(card => !contracts.some(contract => contract.dev === card.name))
+        .map(({ name, img }, index) => (
           <div
             key={index}
             className="bg-zinc-800 rounded-2xl shadow-xl p-6 flex flex-col items-center"

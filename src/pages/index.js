@@ -1,32 +1,42 @@
 
 import Image from "next/image";
 import { Geist, Geist_Mono } from "next/font/google";
-import ThemeSwitch from "../components/ThemeSwitch";
-import  Carousel  from "@/components/Cards";
+import React, {useContext, useEffect, useState } from "react";
+import dynamic from "next/dynamic";
+import Presentation from "@/components/Presentation"
+const SwipeCards = dynamic(() => import("@/components/Cards"), { ssr: false });
+import Footer from "@/components/Footer";
+const Navbar = dynamic(() => import("@/components/Navbar"), { ssr: false });
+import { ThemeProvider } from "@/contexts/ThemeContext";
+import TestimoniosSection from "@/components/TestimoniosSection";
+import { CarritoProvider } from "@/contexts/CarritoContext";
+import CardsCarrito from "@/components/CardsCarrito";
 
-
-
+ 
 export default function Home () {
-  return (
-    <><div
-      className={`${geistSans.className} ${geistMono.className} grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]`}
-    >
-      <div className="switch">
-        <ThemeSwitch />
-      </div>
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
+  const [showCards, setShowCards] = useState(false);
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setShowCards(true);
+    }, 1000);
 
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-          a />
-      </footer>
-    </div><>
-        <Carousel />
-      </></>
+    return () => clearTimeout(timeout);
+  }, []);
+  return (
+    <>
+     
+      <ThemeProvider>
+        
+        <Presentation />
+        <CarritoProvider>
+          <Navbar /> 
+        {showCards && <SwipeCards />}
+        <TestimoniosSection />
+        </CarritoProvider>
+        <Footer />
+        
+    </ThemeProvider>
+    
+    </>
   );
 }
