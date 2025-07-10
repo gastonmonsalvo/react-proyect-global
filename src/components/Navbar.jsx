@@ -3,6 +3,7 @@ import ThemeSwitch from "./ThemeSwitch";
 import { ThemeContext } from "../contexts/ThemeContext"; // importo para ajustar cambios en hovers, transitions,etc
 import { useCarrito } from "@/contexts/CarritoContext";
 import CardsCarrito from "@/components/CardsCarrito";
+import CountrySearchFilter from "./CountrySearchFilter";
 const Navbar = () => {
   /*carrito*/ 
   const { mostrarCarrito, setMostrarCarrito, contracts} = useCarrito();
@@ -97,7 +98,7 @@ const Navbar = () => {
     <>
       <div
         className={`
-                relative w-full h-[120px] sticky top-0 z-50 flex items-center 
+                w-full h-[120px] sticky top-0 z-50 flex items-center 
                 justify-between px-5 transition-all 
                 duration-400 
                 ${darkModeScroll}`}
@@ -192,7 +193,7 @@ const Navbar = () => {
             </button>
             {userOpen && (
               <div
-                className={`${darkModeBg} absolute top-[50px] right-[-10] right-[-10] w-50 rounded-lg py-2 z-50 text-sm`}
+                className={`${darkModeBg} absolute top-[50px] right-[-10] w-50 rounded-lg py-2 z-50 text-sm`}
               >
                 {/* TRIANGULO */}
                 <div className="absolute -top-3 right-5 w-4 h-5 z-[-1]">
@@ -275,11 +276,7 @@ const Navbar = () => {
           <div
             className={`${darkModeBg} absolute top-[120px] left-0 w-full p-4 flex items-center gap-2`}
           >
-            <input
-              type="text"
-              placeholder="Qué estas buscando?"
-              className={`${darkModeItemsList} font-bold flex-grow px-6 py-2 rounded-full  outline-none`}
-            />
+            <CountrySearchFilter />
             <button
               onClick={handleSearchClick}
               className={`${darkModeItemsList} text-xl`}
