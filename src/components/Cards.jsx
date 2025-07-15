@@ -104,7 +104,7 @@ return (
             <div
             key={idx}
             ref={idx === 0 ? cardRef : null}
-            className="flex-shrink-0 w-[270px] min-h-[380px] bg-white/30 rounded-lg shadow-md flex flex-col items-center pt-5 pb-4 font-sans backdrop-blur-md"
+            className="flex-shrink-0 w-[270px] min-h-[380px] bg-white/50 rounded-lg shadow-md flex flex-col items-center pt-5 pb-4 font-sans backdrop-blur-md"
             >
             <img src={card.img} alt={`Foto de ${card.name}`} className="w-[150px] h-[150px] object-cover rounded-full mb-2" />
             <h3 className="text-black text-lg font-bold mt-1">{card.name}</h3>

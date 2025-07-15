@@ -8,33 +8,27 @@ export default function TestimoniosSection() {
     { id: 5, nombre: "Carlos (Tech Lead Recruiter)", texto: "Los perfiles son excelentes, ¡ahorro mucho tiempo en la búsqueda!" },
     { id: 6, nombre: "Sofía (HR Recruiter)", texto: "La aplicación es muy práctica y los candidatos están muy bien calificados." },
   ];
-
+  
   return (
-    <section className="p-4 bg-black">
-      <h2
-        className="text-2xl font-bold mb-4 text-center"
-        style={{ color: "rgb(199, 125,255)" }}
+    <section className="p-4 bg white">
+        <h2 className="text-2xl font-bold mb-4 text-center text-green-700">
+          TESTIMONIOS
+        </h2>
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 ">
+    {testimonios.map((t) => (
+      <div
+        key={t.id}
+        className="rounded p-4 shadow-md  border border-gray-300 dark:border-gray-500 bg-white/50"
       >
-        TESTIMONIOS
-      </h2>
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
-        {testimonios.map((t) => (
-          <div
-            key={t.id}
-            className="rounded p-4 shadow-md bg-black border border-gray-700"
-          >
-            <p className="italic text-white">
-              &quot;{t.texto}&quot;
-            </p>
-            <p
-              className="mt-2 text-sm font-semibold"
-              style={{ color: "rgb(175, 252, 65)" }}
-            >
-              - {t.nombre}
-            </p>
-          </div>
-        ))}
+        <p className="italic text-black ">
+          "{t.texto}"
+        </p>
+        <p className="mt-2 text-sm font-semibold ">
+          - {t.nombre}
+        </p>
       </div>
-    </section>
+    ))}
+  </div>
+</section>
   );
 }
