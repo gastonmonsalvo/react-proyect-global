@@ -1,7 +1,9 @@
 import React, { useRef, useState, useEffect } from "react";
 import DatePerson from "./DatePerson";
+import { useCarrito } from "@/contexts/CarritoContext";
 
-const cardsData = [
+
+export const cardsData = [
 { id:1, name: "Karen Sandoval", role: "Frontend Dev", img: "/img/Karen.png.jpg" },
 { id:2, name: "Ibar Caubet", role: "Frontend & Backend Dev", img: "/img/Ibar.png.jpg" },
 { id:3, name: "Matias Dominguez", role: "Fullstack Dev", img: "/img/matias.png.jpg" },
@@ -80,6 +82,8 @@ useEffect(() => {
 
 const maxIndex = cardsData.length - CARDS_VISIBLE;
 
+// FUNCION DEL BOTON AGREGAR AL CARRITO 
+const { agregar } = useCarrito();
 return (
     <div
     ref={wrapperRef}
@@ -109,7 +113,14 @@ return (
             <img src={card.img} alt={`Foto de ${card.name}`} className="w-[150px] h-[150px] object-cover rounded-full mb-2" />
             <h3 className="text-black text-lg font-bold mt-1">{card.name}</h3>
             <p className="text-black text-sm opacity-80 mb-2">{card.role}</p>
-            <DatePerson className="mt-auto px-4 py-2 bg-purple-700 text-white rounded font-bold text-sm shadow hover:bg-purple-900 transition" userId={card.id} />
+            <div className="flex flex-col justify-around items-center my-2">
+                <button className="my-1 px-5 py-2 bg-purple-700 text-white rounded font-bold text-sm shadow hover:bg-green-700 cursor-pointer transition" onClick={() => agregar(card)}>Agregar</button>
+                <div className="flex flex-col justify-center items-center">
+                    <DatePerson userId={card.id} />
+                </div>
+            </div>
+            
+            
             </div>
         ))}
         </div>

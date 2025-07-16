@@ -2,8 +2,8 @@ import { useContext, useEffect, useState } from "react";
 import ThemeSwitch from "./ThemeSwitch";
 import { ThemeContext } from "../contexts/ThemeContext"; // importo para ajustar cambios en hovers, transitions,etc
 import { useCarrito } from "@/contexts/CarritoContext";
-import CardsCarrito from "@/components/CardsCarrito";
 import CountrySearchFilter from "./CountrySearchFilter";
+import CardsCarrito from "./CardsCarrito";
 const Navbar = () => {
   /*carrito*/ 
   const { mostrarCarrito, setMostrarCarrito, contracts} = useCarrito();
@@ -14,6 +14,9 @@ const Navbar = () => {
   if (userOpen) setUserOpen(false);
   setMostrarCarrito((prev) => !prev);
   };
+
+  const {limpiar, carrito } = useCarrito();
+
   
   /*  DETECCION SCROLL - NAVBAR  */
   const [scrolled, setScrolled] = useState(false);
@@ -289,8 +292,11 @@ const Navbar = () => {
         {mostrarCarrito && (
        <div className="fixed top-[122px] inset-x-3 flex justify-center">
           <div className={`${darkModeBg} w-[80%] max-w-5xl max-h-[80vh] overflow-y-auto rounded-xl bg-zinc-900}`}>
-              <CardsCarrito />
-            </div>
+                <button className="flex justify-center p-2 w-full hover:cursor-pointer transition" onClick={limpiar}>X Limpar</button>
+                {carrito.length === 0 ? (
+                    <p className="text-white text-center py-4">🛒 Carrito vacío</p>
+                  ) : ( <CardsCarrito /> )}
+          </div>
         </div>
         )}
       </div>

@@ -117,20 +117,26 @@ function DatePerson({ userId }) {
   if (!user) return null; // Por si no encuentra el usuario
 
   return (
-    <FoldeButton label={`Perfil de ${user.name}`}>
-      <div className="flex bg-violet-900 p-4 rounded text-green-500 flex-col gap-2 border-">
-        <h2 className="text-xl font-bold">{user.name} {user.lastname}</h2>
-        <p>{user.miniBio}</p>
-        <ul className="list-disc pl-5">
-          <li>Stack: {user.mainStack}</li>
-          <li>Framework: {user.framework}</li>
-          <li>Nivel: {user.experiencieLevel}</li>
-          <li>Disponibilidad: {user.timeAvailability}</li>
-          <li>Modo de trabajo: {user.modeTheWork}</li>
-          <li>Ubicación: {user.location}</li>
-        </ul>
+    <>
+      <div className="flex flex-col items-center justify-center">
+        <FoldeButton label={`Ver Perfil`}>
+          <div className="flex bg-violet-900 p-4 rounded text-green-500 flex-col gap-2 border-">
+            <h2 className="text-xl font-bold">{user.name} {user.lastname}</h2>
+            <p>{user.miniBio}</p>
+            <ul className="list-disc pl-5">
+              <li>Stack: {user.mainStack}</li>
+              <li>Framework: {user.framework}</li>
+              <li>Nivel: {user.experiencieLevel}</li>
+              <li>Disponibilidad: {user.timeAvailability}</li>
+              <li>Modo de trabajo: {user.modeTheWork}</li>
+              <li>Ubicación: {user.location}</li>
+            </ul>
+          </div>
+        </FoldeButton>
       </div>
-    </FoldeButton>
+     
+    </>
+    
   );
 }
 
