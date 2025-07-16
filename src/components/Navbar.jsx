@@ -126,12 +126,9 @@ const Navbar = () => {
             {
               <ul className="flex flex-wrap justify-center items-center gap-6 whitespace-nowrap text-2xl">
                 {[
-                  { label: "Home", id: "home" },
-                  { label: "Developer Full Stack", id: "fullstack" },
-                  { label: "Frontend", id: "frontend" },
-                  { label: "Backend", id: "backend" },
-                  { label: "All Categories", id: "categories" },
-                  { label: "About", id: "about" },
+                  { label: "Developers", id: "devs" },,
+                  { label: "Testimonios", id: "testimonios" },
+                  { label: "Contacto", id: "contacto" },
                 ].map((section) => (
                   <li key={section.id}>
                     <a
@@ -252,12 +249,9 @@ const Navbar = () => {
             {/* LISTA */}
             <ul className="w-full">
               {[
-                { label: "Home", id: "home" },
-                { label: "Developer Full Stack", id: "fullstack" },
-                { label: "Frontend", id: "frontend" },
-                { label: "Backend", id: "backend" },
-                { label: "All Categories", id: "categories" },
-                { label: "About", id: "about" },
+                { label: "Developers", id: "devs" },
+                { label: "Testimonios", id: "testimonios" },
+                { label: "Contacto", id: "contacto" },
               ].map((section) => (
                 <a href={`#${section.id}`} className={`${darkModeHoverItems}`}>
                   <li

@@ -45,7 +45,7 @@ function DatePerson({ userId }) {
       miniBio:"Soy un estudiante de la Academia Global Academy ejerciendo la carrera de Full Stack Developer",
       mainStack: "MERN Stack",
       framework: "Next.js && Node.js",
-      experiencieLevel: "Senior",
+      experiencieLevel: "Junior",
       timeAvailability: "Full Time",
       modeTheWork: "Hibrido",
       location: "Buenos Aires(GBA-CABA)"
