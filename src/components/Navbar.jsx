@@ -4,17 +4,18 @@ import { ThemeContext } from "../contexts/ThemeContext"; // importo para ajustar
 import { useCarrito } from "@/contexts/CarritoContext";
 import CardsCarrito from "@/components/CardsCarrito";
 import CountrySearchFilter from "./CountrySearchFilter";
+import About from "./About";
 const Navbar = () => {
-  /*carrito*/ 
-  const { mostrarCarrito, setMostrarCarrito, contracts} = useCarrito();
+  /*carrito*/
+  const { mostrarCarrito, setMostrarCarrito, contracts } = useCarrito();
 
   const toggleCarrito = () => {
-  if (menuOpen) setMenuOpen(false);
-  if (searchOpen) setSearchOpen(false);
-  if (userOpen) setUserOpen(false);
-  setMostrarCarrito((prev) => !prev);
+    if (menuOpen) setMenuOpen(false);
+    if (searchOpen) setSearchOpen(false);
+    if (userOpen) setUserOpen(false);
+    setMostrarCarrito((prev) => !prev);
   };
-  
+
   /*  DETECCION SCROLL - NAVBAR  */
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
@@ -48,8 +49,18 @@ const Navbar = () => {
     : scrolled
     ? "bg-zinc-200"
     : "bg-stone-50";
-  /* CARRITO */
-  
+
+  /*  ABOUT  */
+  const [aboutOpen, setAboutOpen] = useState(false);
+  const handleAboutClick = () => {
+    {
+      if (menuOpen) setMenuOpen(false);
+      if (userOpen) setUserOpen(false);
+      if (mostrarCarrito) setMostrarCarrito(false);
+      setAboutOpen(!aboutOpen);
+    }
+  };
+
   /*  MENU HAMBURGUESA   */
   const [menuOpen, setMenuOpen] = useState(false);
   const HandleMenuOpen = () => {
@@ -126,7 +137,7 @@ const Navbar = () => {
             {
               <ul className="flex flex-wrap justify-center items-center gap-6 whitespace-nowrap text-2xl">
                 {[
-                  { label: "Developers", id: "devs" },,
+                  { label: "Developers", id: "devs" },
                   { label: "Testimonios", id: "testimonios" },
                   { label: "Contacto", id: "contacto" },
                 ].map((section) => (
@@ -139,16 +150,36 @@ const Navbar = () => {
                     </a>
                   </li>
                 ))}
+                <button
+                  onClick={handleAboutClick}
+                  className={`${darkModeHoverItems} cursor-pointer`}
+                >
+                  About
+                </button>
+                {aboutOpen && (
+                  <div
+                    className={`${darkModeBg} absolute top-[120px] left-0 w-full p-4 flex items-center gap-2`}
+                  >
+                    <About />
+                    <button
+                      onClick={handleAboutClick}
+                      className={`${darkModeItemsList} text-xl cursor-pointer`}
+                    >
+                      ✖
+                    </button>
+                  </div>
+                )}
               </ul>
             }
           </nav>
         )}
         {/* ICONOS Y MENU */}
         <div className="flex items-center justify-center gap-6 shrink-0 space-y-[-1]">
+
           {/*LUPA*/}
           <button
             onClick={handleSearchClick}
-            className="hover:scale-110 transition-transform"
+            className="hover:scale-110 transition-transform relative"
           >
             <img
               src="/img/lens_logo.png"
@@ -156,6 +187,7 @@ const Navbar = () => {
               className="w-7 cursor-pointer"
             />
           </button>
+
           {/*CARRITO*/}
           <div className="relative">
             <button
@@ -170,7 +202,7 @@ const Navbar = () => {
             </button>
             {contracts.length > 0 && (
               <span className="absolute -top-2 -right-4 bg-red-400 text-white text-xs font-bold rounded-full w-4 h-4 flex items-center justify-center">
-              {contracts.length}
+                {contracts.length}
               </span>
             )}
           </div>
@@ -230,6 +262,15 @@ const Navbar = () => {
               </div>
             )}
           </div>
+          {/* ABOUT*/}
+          {isSmallScreen && (
+            <button
+              onClick={handleAboutClick}
+              className="hover:scale-110 transition-transform"
+            >
+              <span className="text-2xl cursor-pointer"> ABOUT </span>
+            </button>
+          )}
 
           {/* BOTON HAMBURGUESA */}
           {isSmallScreen && (
@@ -265,6 +306,20 @@ const Navbar = () => {
             </ul>
           </div>
         )}
+        {/* ABOUT  */}
+        {isSmallScreen && aboutOpen && (
+          <div
+            className={`${darkModeBg} absolute top-[120px] left-0 w-full p-4 flex items-center gap-2`}
+          >
+            <About />
+            <button
+              onClick={handleAboutClick}
+              className={`${darkModeItemsList} text-xl`}
+            >
+              ✖
+            </button>
+          </div>
+        )}
         {/* BUSCADOR - LUPA  */}
         {searchOpen && (
           <div
@@ -281,11 +336,13 @@ const Navbar = () => {
         )}
         {/* CARRITO */}
         {mostrarCarrito && (
-       <div className="fixed top-[122px] inset-x-3 flex justify-center">
-          <div className={`${darkModeBg} w-[80%] max-w-5xl max-h-[80vh] overflow-y-auto rounded-xl bg-zinc-900}`}>
+          <div className="fixed top-[122px] inset-x-3 flex justify-center">
+            <div
+              className={`${darkModeBg} w-[80%] max-w-5xl max-h-[80vh] overflow-y-auto rounded-xl bg-zinc-900}`}
+            >
               <CardsCarrito />
             </div>
-        </div>
+          </div>
         )}
       </div>
     </>
