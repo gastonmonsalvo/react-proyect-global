@@ -4,20 +4,20 @@ import { ThemeContext } from "../contexts/ThemeContext"; // importo para ajustar
 import { useCarrito } from "@/contexts/CarritoContext";
 import CountrySearchFilter from "./CountrySearchFilter";
 import CardsCarrito from "./CardsCarrito";
+import About from "./About";
 const Navbar = () => {
-  /*carrito*/ 
-  const { mostrarCarrito, setMostrarCarrito, contracts} = useCarrito();
+  /*carrito*/
+  const { mostrarCarrito, setMostrarCarrito, contracts } = useCarrito();
 
   const toggleCarrito = () => {
-  if (menuOpen) setMenuOpen(false);
-  if (searchOpen) setSearchOpen(false);
-  if (userOpen) setUserOpen(false);
-  setMostrarCarrito((prev) => !prev);
+    if (menuOpen) setMenuOpen(false);
+    if (searchOpen) setSearchOpen(false);
+    if (userOpen) setUserOpen(false);
+    setMostrarCarrito((prev) => !prev);
   };
 
-  const {limpiar, carrito } = useCarrito();
+  const { limpiar, carrito } = useCarrito();
 
-  
   /*  DETECCION SCROLL - NAVBAR  */
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
@@ -52,7 +52,7 @@ const Navbar = () => {
     ? "bg-zinc-200"
     : "bg-stone-50";
   /* CARRITO */
-  
+
   /*  MENU HAMBURGUESA   */
   const [menuOpen, setMenuOpen] = useState(false);
   const HandleMenuOpen = () => {
@@ -74,6 +74,16 @@ const Navbar = () => {
       if (userOpen) setUserOpen(false);
       if (mostrarCarrito) setMostrarCarrito(false);
       setSearchOpen(!searchOpen);
+    }
+  };
+  /*  ABOUT  */
+  const [aboutOpen, setAboutOpen] = useState(false);
+  const handleAboutClick = () => {
+    {
+      if (menuOpen) setMenuOpen(false);
+      if (userOpen) setUserOpen(false);
+      if (mostrarCarrito) setMostrarCarrito(false);
+      setAboutOpen(!aboutOpen);
     }
   };
   /*  MENU DE USUARIO  */
@@ -129,12 +139,13 @@ const Navbar = () => {
             {
               <ul className="flex flex-wrap justify-center items-center gap-6 whitespace-nowrap text-2xl">
                 {[
+                  
                   { label: "Home", id: "home" },
                   { label: "Developer Full Stack", id: "fullstack" },
                   { label: "Frontend", id: "frontend" },
                   { label: "Backend", id: "backend" },
                   { label: "All Categories", id: "categories" },
-                  { label: "About", id: "about" },
+
                 ].map((section) => (
                   <li key={section.id}>
                     <a
@@ -145,6 +156,25 @@ const Navbar = () => {
                     </a>
                   </li>
                 ))}
+                <button
+                      onClick={handleAboutClick}
+                      className={`${darkModeHoverItems} cursor-pointer`}
+                    >
+                      About
+                    </button>
+                    {aboutOpen && (
+                      <div
+                        className={`${darkModeBg} absolute top-[120px] left-0 w-full p-4 flex items-center gap-2`}
+                      >
+                        <About />
+                        <button
+                          onClick={handleAboutClick}
+                          className={`${darkModeItemsList} text-xl`}
+                        >
+                          ✖
+                        </button>
+                      </div>
+                    )}
               </ul>
             }
           </nav>
@@ -176,7 +206,7 @@ const Navbar = () => {
             </button>
             {contracts.length > 0 && (
               <span className="absolute -top-2 -right-4 bg-red-400 text-white text-xs font-bold rounded-full w-4 h-4 flex items-center justify-center">
-              {contracts.length}
+                {contracts.length}
               </span>
             )}
           </div>
@@ -290,14 +320,23 @@ const Navbar = () => {
         )}
         {/* CARRITO */}
         {mostrarCarrito && (
-       <div className="fixed top-[122px] inset-x-3 flex justify-center">
-          <div className={`${darkModeBg} w-[80%] max-w-5xl max-h-[80vh] overflow-y-auto rounded-xl bg-zinc-900}`}>
-                <button className="flex justify-center p-2 w-full hover:cursor-pointer transition" onClick={limpiar}>X Limpar</button>
-                {carrito.length === 0 ? (
-                    <p className="text-white text-center py-4">🛒 Carrito vacío</p>
-                  ) : ( <CardsCarrito /> )}
+          <div className="fixed top-[122px] inset-x-3 flex justify-center">
+            <div
+              className={`${darkModeBg} w-[80%] max-w-5xl max-h-[80vh] overflow-y-auto rounded-xl bg-zinc-900}`}
+            >
+              <button
+                className="flex justify-center p-2 w-full hover:cursor-pointer transition"
+                onClick={limpiar}
+              >
+                X Limpar
+              </button>
+              {carrito.length === 0 ? (
+                <p className="text-white text-center py-4">🛒 Carrito vacío</p>
+              ) : (
+                <CardsCarrito />
+              )}
+            </div>
           </div>
-        </div>
         )}
       </div>
     </>
