@@ -5,6 +5,9 @@ import { useCarrito } from "@/contexts/CarritoContext";
 import CardsCarrito from "@/components/CardsCarrito";
 import CountrySearchFilter from "./CountrySearchFilter";
 import About from "./About";
+import Link from 'next/link';
+import FormUser from "../pages/FormUser";
+
 const Navbar = () => {
   /*carrito*/
   const { mostrarCarrito, setMostrarCarrito, contracts } = useCarrito();
@@ -47,8 +50,8 @@ const Navbar = () => {
       ? "bg-zinc-800"
       : "bg-black"
     : scrolled
-    ? "bg-zinc-200"
-    : "bg-stone-50";
+      ? "bg-zinc-200"
+      : "bg-stone-50";
 
   /*  ABOUT  */
   const [aboutOpen, setAboutOpen] = useState(false);
@@ -253,7 +256,9 @@ const Navbar = () => {
                   <li
                     className={`px-4 py-2 font-semibold cursor-pointer transition-colors ${darkModeItemsList} ${hoverBgColor} ${darkModeHoverItems} active:bg-zinc-700`}
                   >
-                    Mi cuenta
+                    <Link href="/FormUser">
+                      <button>Login</button>
+                    </Link>
                   </li>
                   <li className="px-4 py-2 text-red-600 font-semibold cursor-pointer hover:bg-red-200 active:bg-zinc-700 transition-colors">
                     Salir
