@@ -1,23 +1,20 @@
 import { useState } from "react";
 import { useCarrito } from "@/contexts/CarritoContext";
-
-// Datos con imágenes y nombres
-const cardsData = [
-  { name: "Gaston Monsalvo", img: "/img/gaston.png.jpg" },
-  { name: "Brenda Romero", img: "/img/brenda.png.jpg" },
-  { name: "Nathalie Flores", img: "/img/natty.png.jpg" },
-  { name: "Matias Dominguez", img: "/img/matias.png.jpg" },
-  { name: "Braian Martinez", img: "/img/braian.png.jpg" },
-  { name: "Karen Sandoval", img: "/img/karen.png.jpg" },
-  { name: "Ibar Caubet", img: "/img/ibar.png.jpg" },
-  { name: "Pedro Mendive", img: "/img/pedro.png.jpg" },
-  { name: "Ianela Tenaglia", img: "/img/ianela.png.jpg" },
-  ];
+import { cardsData } from "./Cards";
 
 export default function CardsCarrito() {
+  const { eliminar, carrito, contracts, setContracts } = useCarrito();
+  //const [carrito, contracts, setContracts] = useState([]);
   
   // Estado con las cards que aún no fueron rechazadas ni contratadas
-  const [cards, setCards] = useState(cardsData);
+  const devsAgregados = carrito
+  .filter((card) => !contracts.some((contract) => contract.dev === card.name));
+
+  const uniqueDevs = [...new Map(
+    devsAgregados.map((dev) => [dev.name, dev])
+  ).values()];
+  
+  
 
   // Estado para abrir el modal de contrato con un dev seleccionado
   const [selectedDev, setSelectedDev] = useState(null);
@@ -26,9 +23,6 @@ export default function CardsCarrito() {
   const [form, setForm] = useState({ salario: "", lenguaje: "", horas: "" });
 
   // Lista de contratos enviados
-
-  const { contracts, setContracts } = useCarrito();
-  //const [contracts, setContracts] = useState([]);
 
   // Rechaza y elimina una card del array
   const handleReject = (name) => {
@@ -57,13 +51,14 @@ export default function CardsCarrito() {
     setForm({ salario: "", lenguaje: "", horas: "" });
   };
 
+  
+
   return (
-    <div className="p-4 bg-zinc-900 min-h-screen font-sans text-white">
+    <>
+      <div className="p-4 bg-zinc-900 min-h-screen font-sans text-white">
       {/* Grid responsive con las cards */}
       <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
-        {cards
-        .filter(card => !contracts.some(contract => contract.dev === card.name))
-        .map(({ name, img }, index) => (
+        {uniqueDevs.map(({ name, img }, index) => (
           <div
             key={index}
             className="bg-zinc-800 rounded-2xl shadow-xl p-6 flex flex-col items-center"
@@ -82,7 +77,7 @@ export default function CardsCarrito() {
             <div className="flex justify-around w-full">
               {/* Rechazar */}
               <button
-                onClick={() => handleReject(name)}
+                onClick={() => eliminar(name)}
                 className="px-6 py-2 rounded-lg shadow font-semibold transition hover:brightness-110"
                 style={{ backgroundColor: "rgb(199, 125, 255)", color: "white" }}
               >
@@ -177,5 +172,6 @@ placeholder="Salario ofrecido"
         </div>
       )}
     </div>
+    </>
   );
 }
