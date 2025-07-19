@@ -3,8 +3,12 @@ import ThemeSwitch from "./ThemeSwitch";
 import { ThemeContext } from "../contexts/ThemeContext"; // importo para ajustar cambios en hovers, transitions,etc
 import { useCarrito } from "@/contexts/CarritoContext";
 import CountrySearchFilter from "./CountrySearchFilter";
-import CardsCarrito from "./CardsCarrito";
 import About from "./About";
+import Link from 'next/link';
+import FormUser from "../pages/FormUser";
+
+import CardsCarrito from "./CardsCarrito";
+
 const Navbar = () => {
   /*carrito*/
   const { mostrarCarrito, setMostrarCarrito, contracts } = useCarrito();
@@ -15,7 +19,6 @@ const Navbar = () => {
     if (userOpen) setUserOpen(false);
     setMostrarCarrito((prev) => !prev);
   };
-
   const { limpiar, carrito } = useCarrito();
 
   /*  DETECCION SCROLL - NAVBAR  */
@@ -49,9 +52,19 @@ const Navbar = () => {
       ? "bg-zinc-800"
       : "bg-black"
     : scrolled
-    ? "bg-zinc-200"
-    : "bg-stone-50";
-  /* CARRITO */
+      ? "bg-zinc-200"
+      : "bg-stone-50";
+
+  /*  ABOUT  */
+  const [aboutOpen, setAboutOpen] = useState(false);
+  const handleAboutClick = () => {
+    {
+      if (menuOpen) setMenuOpen(false);
+      if (userOpen) setUserOpen(false);
+      if (mostrarCarrito) setMostrarCarrito(false);
+      setAboutOpen(!aboutOpen);
+    }
+  };
 
   /*  MENU HAMBURGUESA   */
   const [menuOpen, setMenuOpen] = useState(false);
@@ -76,16 +89,7 @@ const Navbar = () => {
       setSearchOpen(!searchOpen);
     }
   };
-  /*  ABOUT  */
-  const [aboutOpen, setAboutOpen] = useState(false);
-  const handleAboutClick = () => {
-    {
-      if (menuOpen) setMenuOpen(false);
-      if (userOpen) setUserOpen(false);
-      if (mostrarCarrito) setMostrarCarrito(false);
-      setAboutOpen(!aboutOpen);
-    }
-  };
+
   /*  MENU DE USUARIO  */
   const [userOpen, setUserOpen] = useState(false);
   const handleUserClick = () => {
@@ -139,12 +143,9 @@ const Navbar = () => {
             {
               <ul className="flex flex-wrap justify-center items-center gap-6 whitespace-nowrap text-2xl">
                 {[
-                  
-                  { label: "Home", id: "home" },
-                  { label: "Developer Full Stack", id: "fullstack" },
-                  { label: "Frontend", id: "frontend" },
-                  { label: "Backend", id: "backend" },
-                  { label: "All Categories", id: "categories" },
+                  { label: "Developers", id: "devs" },
+                  { label: "Testimonios", id: "testimonios" },
+                  { label: "Contacto", id: "contacto" },
 
                 ].map((section) => (
                   <li key={section.id}>
@@ -181,10 +182,11 @@ const Navbar = () => {
         )}
         {/* ICONOS Y MENU */}
         <div className="flex items-center justify-center gap-6 shrink-0 space-y-[-1]">
+
           {/*LUPA*/}
           <button
             onClick={handleSearchClick}
-            className="hover:scale-110 transition-transform"
+            className="hover:scale-110 transition-transform relative"
           >
             <img
               src="/img/lens_logo.png"
@@ -192,6 +194,7 @@ const Navbar = () => {
               className="w-7 cursor-pointer"
             />
           </button>
+
           {/*CARRITO*/}
           <div className="relative">
             <button
@@ -257,7 +260,9 @@ const Navbar = () => {
                   <li
                     className={`px-4 py-2 font-semibold cursor-pointer transition-colors ${darkModeItemsList} ${hoverBgColor} ${darkModeHoverItems} active:bg-zinc-700`}
                   >
-                    Mi cuenta
+                    <Link href="/FormUser">
+                      <button>Login</button>
+                    </Link>
                   </li>
                   <li className="px-4 py-2 text-red-600 font-semibold cursor-pointer hover:bg-red-200 active:bg-zinc-700 transition-colors">
                     Salir
@@ -266,6 +271,15 @@ const Navbar = () => {
               </div>
             )}
           </div>
+          {/* ABOUT*/}
+          {isSmallScreen && (
+            <button
+              onClick={handleAboutClick}
+              className="hover:scale-110 transition-transform"
+            >
+              <span className="text-2xl cursor-pointer"> ABOUT </span>
+            </button>
+          )}
 
           {/* BOTON HAMBURGUESA */}
           {isSmallScreen && (
@@ -285,12 +299,9 @@ const Navbar = () => {
             {/* LISTA */}
             <ul className="w-full">
               {[
-                { label: "Home", id: "home" },
-                { label: "Developer Full Stack", id: "fullstack" },
-                { label: "Frontend", id: "frontend" },
-                { label: "Backend", id: "backend" },
-                { label: "All Categories", id: "categories" },
-                { label: "About", id: "about" },
+                { label: "Developers", id: "devs" },
+                { label: "Testimonios", id: "testimonios" },
+                { label: "Contacto", id: "contacto" },
               ].map((section) => (
                 <a href={`#${section.id}`} className={`${darkModeHoverItems}`}>
                   <li
@@ -302,6 +313,20 @@ const Navbar = () => {
                 </a>
               ))}
             </ul>
+          </div>
+        )}
+        {/* ABOUT  */}
+        {isSmallScreen && aboutOpen && (
+          <div
+            className={`${darkModeBg} absolute top-[120px] left-0 w-full p-4 flex items-center gap-2`}
+          >
+            <About />
+            <button
+              onClick={handleAboutClick}
+              className={`${darkModeItemsList} text-xl`}
+            >
+              ✖
+            </button>
           </div>
         )}
         {/* BUSCADOR - LUPA  */}

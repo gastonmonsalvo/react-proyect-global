@@ -12,7 +12,7 @@ function DatePerson({ userId }) {
       experiencieLevel: "Junior",
       timeAvailability: "Full Time",
       modeTheWork: "Hibrido",
-      location: "Buenos Aires(GBA-CABA)"
+      location: "Buenos Aires"
     },
     { 
       id: 2,
@@ -24,7 +24,7 @@ function DatePerson({ userId }) {
       experiencieLevel: "Junior",
       timeAvailability: "Full Time",
       modeTheWork: "Hibrido",
-      location: "Buenos Aires(GBA)"
+      location: "Buenos Aires"
     },
     {
       id: 3,
@@ -45,34 +45,34 @@ function DatePerson({ userId }) {
       miniBio:"Soy un estudiante de la Academia Global Academy ejerciendo la carrera de Full Stack Developer",
       mainStack: "MERN Stack",
       framework: "Next.js && Node.js",
-      experiencieLevel: "Senior",
+      experiencieLevel: "Junior",
       timeAvailability: "Full Time",
       modeTheWork: "Hibrido",
-      location: "Buenos Aires(GBA-CABA)"
+      location: "Buenos Aires"
     },
     {
       id: 5,
       name: "Nathalie", 
       lastname: "Flores", 
-      miniBio: "Soy una estudiante de la Academia Global Academy ejerciendo la carrera de Full Stack Developer",
+      miniBio: "Soy un estudiante de la Academia Global Academy ejerciendo la carrera de Full Stack Developer",
       mainStack: "MERN Stack",
       framework: "Next.js && Node.js",
       experiencieLevel: "Junior",
       timeAvailability: "Full Time",
       modeTheWork: "Hibrido",
-      location: "Buenos Aires(GBA-CABA)"
+      location: "Buenos Aires"
     },
     {
       id: 6,
       name: "Brenda", 
       lastname: "Romero", 
-      miniBio: "Soy una estudiante de la Academia Global Academy ejerciendo la carrera de Full Stack Developer",
+      miniBio: "Soy un estudiante de la Academia Global Academy ejerciendo la carrera de Full Stack Developer",
       mainStack: "MERN Stack",
       framework: "Next.js && Node.js",
       experiencieLevel: "Junior",
       timeAvailability: "Full Time",
       modeTheWork: "Hibrido",
-      location: "Buenos Aires(GBA-CABA)"
+      location: "Buenos Aires"
     },
     {
       id: 7,
@@ -84,7 +84,7 @@ function DatePerson({ userId }) {
       experiencieLevel: "Junior",
       timeAvailability: "Full Time",
       modeTheWork: "Hibrido",
-      location: "Buenos Aires(GBA-CABA)"
+      location: "Buenos Aires"
     },
     {
       id: 8,
@@ -96,19 +96,19 @@ function DatePerson({ userId }) {
       experiencieLevel: "Junior",
       timeAvailability: "Full Time",
       modeTheWork: "Hibrido",
-      location: "Buenos Aires(GBA-CABA)"
+      location: "Buenos Aires"
     },
     {
       id: 9,
       name: "Braian", 
       lastname: "Martinez", 
-      miniBio: "Soy un estudiante de la Academia Global Academy y por mi ausencia uno de los sospechosos por la desaparición de Maldonado, cuac",
+      miniBio: "Soy un estudiante de la Academia Global Academy ejerciendo la carrera de Full Stack Developer",
       mainStack: "MERN Stack",
       framework: "Next.js && Node.js",
       experiencieLevel: "Junior",
       timeAvailability: "Full Time",
       modeTheWork: "Hibrido",
-      location: "Buenos Aires(GBA-CABA)"
+      location: "Buenos Aires"
     }
   ];
 
@@ -120,7 +120,7 @@ function DatePerson({ userId }) {
     <>
       <div className="flex flex-col items-center justify-center">
         <FoldeButton label={`Ver Perfil`}>
-          <div className="flex bg-violet-900 p-4 rounded text-green-500 flex-col gap-2 border-">
+          <div className="flex bg-violet-900 p-4 rounded text-green-500 flex-col gap-2 rounded-b-2xl">
             <h2 className="text-xl font-bold">{user.name} {user.lastname}</h2>
             <p>{user.miniBio}</p>
             <ul className="list-disc pl-5">

@@ -1,30 +1,46 @@
-import { createContext, useState, useContext } from "react";
+import { createContext, useState, useContext, useEffect } from "react";
 
 export const CarritoContext = createContext();
 
-
 export const CarritoProvider = ({ children }) => {
   const [carrito, setCarrito] = useState([]);
-  const [mostrarCarrito, setMostrarCarrito] = useState(false);
   const [contracts, setContracts] = useState([]);
+  const [mostrarCarrito, setMostrarCarrito] = useState(false);
 
-  // Agrega dev por name
+  // Cargar carrito y contratos desde localStorage al montar
+  useEffect(() => {
+    const savedCarrito = localStorage.getItem("carrito");
+    const savedContracts = localStorage.getItem("contracts");
+    if (savedCarrito) setCarrito(JSON.parse(savedCarrito));
+    if (savedContracts) setContracts(JSON.parse(savedContracts));
+  }, []);
+
+  // Persistencia automática
+  useEffect(() => {
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+  }, [carrito]);
+
+  useEffect(() => {
+    localStorage.setItem("contracts", JSON.stringify(contracts));
+  }, [contracts]);
+
   const agregar = (nuevoDev) => {
     setCarrito((prev) => {
       const yaExiste = prev.some((dev) => dev.name === nuevoDev.name);
       return yaExiste ? prev : [...prev, nuevoDev];
     });
   };
-  
-  
 
-  // Elimina dev por name
   const eliminar = (name) => {
     setCarrito((prev) => prev.filter((d) => d.name !== name));
   };
 
-  // Limpia el carrito entero
-  const limpiar = () => setCarrito([]);
+  const limpiar = () => {
+    setCarrito([]);
+    setContracts([]);
+    localStorage.removeItem("carrito");
+    localStorage.removeItem("contracts");
+  };
 
   return (
     <CarritoContext.Provider

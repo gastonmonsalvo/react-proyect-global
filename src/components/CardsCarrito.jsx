@@ -1,91 +1,73 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useCarrito } from "@/contexts/CarritoContext";
-import { cardsData } from "./Cards";
 
 export default function CardsCarrito() {
-  const { eliminar, carrito, contracts, setContracts } = useCarrito();
-  //const [carrito, contracts, setContracts] = useState([]);
-  
-  // Estado con las cards que aún no fueron rechazadas ni contratadas
-  const devsAgregados = carrito
-  .filter((card) => !contracts.some((contract) => contract.dev === card.name));
+  const { carrito, contracts, setContracts } = useCarrito();
 
-  const uniqueDevs = [...new Map(
-    devsAgregados.map((dev) => [dev.name, dev])
-  ).values()];
-  
-  
+  // Filtrar solo los devs que no fueron contratados
+  const devsSinContratar = carrito.filter(
+    (dev) => !contracts.some((contract) => contract.dev === dev.name)
+  );
 
-  // Estado para abrir el modal de contrato con un dev seleccionado
+  // Estado local para controlar las cards visibles
+  const [cards, setCards] = useState(devsSinContratar);
+
+  // Mantener sincronizadas las cards si cambia el carrito o los contratos
+  useEffect(() => {
+    setCards(devsSinContratar);
+  }, [carrito, contracts]);
+
   const [selectedDev, setSelectedDev] = useState(null);
-
-  // Formulario del contrato
   const [form, setForm] = useState({ salario: "", lenguaje: "", horas: "" });
 
-  // Lista de contratos enviados
-
-  // Rechaza y elimina una card del array
-  const handleReject = (name) => {
-    setCards((prev) => prev.filter((card) => card.name !== name));
+  const handleReject = (id) => {
+    setCards((prev) => prev.filter((card) => card.id !== id));
   };
 
-  // Abre el modal con los datos del dev
   const handleAccept = (dev) => {
     setSelectedDev(dev);
   };
 
-  // Actualiza los valores del formulario
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  // Envía el contrato, guarda y elimina la card
   const handleSubmit = () => {
     const newContract = {
       dev: selectedDev.name,
       ...form,
     };
     setContracts([...contracts, newContract]);
-    setCards((prev) => prev.filter((card) => card.name !== selectedDev.name));
+    setCards((prev) => prev.filter((card) => card.id !== selectedDev.id));
     setSelectedDev(null);
     setForm({ salario: "", lenguaje: "", horas: "" });
   };
 
-  
-
   return (
-    <>
-      <div className="p-4 bg-zinc-900 min-h-screen font-sans text-white">
-      {/* Grid responsive con las cards */}
+    <div className="p-4 bg-zinc-900 min-h-screen font-sans text-white">
+      {/* Grid de cards en el carrito (sin contratar) */}
       <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
-        {uniqueDevs.map(({ name, img }, index) => (
+        {cards.map(({ id, name, img }) => (
           <div
-            key={index}
+            key={id}
             className="bg-zinc-800 rounded-2xl shadow-xl p-6 flex flex-col items-center"
           >
-            {/* Imagen de la persona */}
             <img
               src={img}
               alt={name}
               className="w-full h-64 object-cover rounded-xl mb-4"
             />
-            {/* Nombre de la persona */}
-            <h2 className="text-2xl font-bold text-center text-white mb-6">
-              {name}
-            </h2>
-            {/* Botones de acción */}
+            <h2 className="text-2xl font-bold text-center text-white mb-6">{name}</h2>
             <div className="flex justify-around w-full">
-              {/* Rechazar */}
               <button
-                onClick={() => eliminar(name)}
+                onClick={() => handleReject(id)}
                 className="px-6 py-2 rounded-lg shadow font-semibold transition hover:brightness-110"
                 style={{ backgroundColor: "rgb(199, 125, 255)", color: "white" }}
               >
                 Rechazar
               </button>
-              {/* Contratar */}
               <button
-                onClick={() => handleAccept({ name, img })}
+                onClick={() => handleAccept({ id, name, img })}
                 className="px-6 py-2 rounded-lg shadow font-semibold transition hover:brightness-110"
                 style={{ backgroundColor: "rgb(175, 252, 65)", color: "black" }}
               >
@@ -100,21 +82,13 @@ export default function CardsCarrito() {
       {selectedDev && (
         <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50">
           <div className="bg-zinc-800 p-6 rounded-2xl w-80 shadow-xl">
-            {/* Título en verde */}
-            <h2 className="text-xl font-bold text-[rgb(175,252,65)] mb-4">
-              Contrato laboral
-            </h2>
-
+            <h2 className="text-xl font-bold text-[rgb(175,252,65)] mb-4">Contrato laboral</h2>
             <p className="mb-2">
               Para: <span className="font-semibold">{selectedDev.name}</span>
             </p>
-
-            {/* Inputs del contrato */}
             <input
               name="salario"
-
-
-placeholder="Salario ofrecido"
+              placeholder="Salario ofrecido"
               value={form.salario}
               onChange={handleChange}
               className="w-full p-2 mb-2 rounded bg-zinc-700 text-white"
@@ -133,8 +107,6 @@ placeholder="Salario ofrecido"
               onChange={handleChange}
               className="w-full p-2 mb-4 rounded bg-zinc-700 text-white"
             />
-
-            {/* Botones del modal */}
             <div className="flex justify-end gap-2">
               <button
                 onClick={() => setSelectedDev(null)}
@@ -172,6 +144,5 @@ placeholder="Salario ofrecido"
         </div>
       )}
     </div>
-    </>
   );
 }
