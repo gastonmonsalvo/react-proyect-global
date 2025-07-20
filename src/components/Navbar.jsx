@@ -8,7 +8,12 @@ import Link from 'next/link';
 import FormUser from "../pages/FormUser";
 
 import CardsCarrito from "./CardsCarrito";
+import { FaRegUserCircle, FaSearch, FaShoppingCart  } from "react-icons/fa";
+import { FaRegMessage } from "react-icons/fa6";
 
+                  
+
+			
 const Navbar = () => {
   /*carrito*/
   const { mostrarCarrito, setMostrarCarrito, contracts } = useCarrito();
@@ -17,6 +22,7 @@ const Navbar = () => {
     if (menuOpen) setMenuOpen(false);
     if (searchOpen) setSearchOpen(false);
     if (userOpen) setUserOpen(false);
+    if(aboutOpen) setAboutOpen(false);
     setMostrarCarrito((prev) => !prev);
   };
   const { limpiar, carrito } = useCarrito();
@@ -62,6 +68,7 @@ const Navbar = () => {
       if (menuOpen) setMenuOpen(false);
       if (userOpen) setUserOpen(false);
       if (mostrarCarrito) setMostrarCarrito(false);
+
       setAboutOpen(!aboutOpen);
     }
   };
@@ -75,6 +82,7 @@ const Navbar = () => {
     if (searchOpen) setSearchOpen(false);
     if (userOpen) setUserOpen(false);
     if (mostrarCarrito) setMostrarCarrito(false);
+    if(aboutOpen) setAboutOpen(false);
     // SWITCHEAR EL MENU
     setMenuOpen(!menuOpen);
   };
@@ -85,6 +93,7 @@ const Navbar = () => {
       //misma filosofia
       if (menuOpen) setMenuOpen(false);
       if (userOpen) setUserOpen(false);
+      if(aboutOpen) setAboutOpen(false);
       if (mostrarCarrito) setMostrarCarrito(false);
       setSearchOpen(!searchOpen);
     }
@@ -97,6 +106,7 @@ const Navbar = () => {
       setMenuOpen(false);
       setSearchOpen(false);
       setMostrarCarrito(false);
+      setAboutOpen(false);
       setTimeout(() => setUserOpen(true), 200);
     } else {
       setUserOpen(!userOpen);
@@ -117,14 +127,14 @@ const Navbar = () => {
         className={`
                 w-full h-[120px] sticky top-0 z-50 flex items-center 
                 justify-between px-5 transition-all 
-                duration-400 
+                duration-400  
                 ${darkModeScroll}`}
       >
         {/*LOGO*/}
         {!isSmallScreen ? (
           <div className="flex flex-col items-center justify-center gap-1 shrink-0 pr-4">
             <img src="/img/logo_proyect.png" alt="Logo" className="w-15" />
-            <span className="text-[rgbrgb(203,101,224)] font-semibold whitespace-nowrap text-xl">
+            <span className="text-[rgb(203,101,224)] font-semibold whitespace-nowrap text-xl">
               OriginDev
             </span>
           </div>
@@ -165,12 +175,13 @@ const Navbar = () => {
                     </button>
                     {aboutOpen && (
                       <div
-                        className={`${darkModeBg} absolute top-[120px] left-0 w-full p-4 flex items-center gap-2`}
+                        className={`${darkModeBg} absolute top-[120px] left-0 w-full p-4 flex items-center gap-2 pb-9`}
+
                       >
                         <About />
                         <button
                           onClick={handleAboutClick}
-                          className={`${darkModeItemsList} text-xl`}
+                          className={`${darkModeItemsList} text-3xl`}
                         >
                           ✖
                         </button>
@@ -188,24 +199,17 @@ const Navbar = () => {
             onClick={handleSearchClick}
             className="hover:scale-110 transition-transform relative"
           >
-            <img
-              src="/img/lens_logo.png"
-              alt="Buscar"
-              className="w-7 cursor-pointer"
-            />
+            <FaSearch className="mt-1 text-3xl cursor-pointer"/>
+
           </button>
 
           {/*CARRITO*/}
-          <div className="relative">
+          <div className="relative ">
             <button
               onClick={toggleCarrito}
               className="hover:scale-110 transition-transform relative"
             >
-              <img
-                src="/img/carrito_logo.png"
-                alt="Carrito"
-                className="w-8 pt-1.5 cursor-pointer"
-              />
+                <FaShoppingCart className="mt-1 text-3xl cursor-pointer" />
             </button>
             {contracts.length > 0 && (
               <span className="absolute -top-2 -right-4 bg-red-400 text-white text-xs font-bold rounded-full w-4 h-4 flex items-center justify-center">
@@ -220,11 +224,7 @@ const Navbar = () => {
               className="hover:scale-110 transition-transform"
             >
               <a href="#">
-                <img
-                  src="/img/user_logo.png"
-                  alt="User"
-                  className="w-7 mt-1 cursor-pointer"
-                />
+                <FaRegUserCircle className="mt-1 text-4xl cursor-pointer" />
               </a>
             </button>
             {userOpen && (
@@ -248,11 +248,7 @@ const Navbar = () => {
                   </button>
                   {/* MENSAJES */}
                   <button className="hover:scale-110 transition-transform">
-                    <img
-                      src="/img/logo_message.png"
-                      alt="tema oscuro"
-                      className="w-8"
-                    />
+                    <FaRegMessage  className="mt-1 mr-2 text-3xl cursor-pointer" />
                   </button>
                 </div>
                 {/*TEXTO*/}
@@ -271,21 +267,13 @@ const Navbar = () => {
               </div>
             )}
           </div>
-          {/* ABOUT*/}
-          {isSmallScreen && (
-            <button
-              onClick={handleAboutClick}
-              className="hover:scale-110 transition-transform"
-            >
-              <span className="text-2xl cursor-pointer"> ABOUT </span>
-            </button>
-          )}
+     
 
           {/* BOTON HAMBURGUESA */}
           {isSmallScreen && (
             <button
               onClick={HandleMenuOpen}
-              className={`${darkModeItemsList} text-3xl  pl-1}`}
+              className={`${darkModeItemsList} text-4xl  pl-1}`}
             >
               {menuOpen ? "✖" : "☰"}
             </button>
@@ -294,7 +282,7 @@ const Navbar = () => {
         {/* MENU HAMBURGUESA - SOLO CELULAR */}
         {isSmallScreen && menuOpen && (
           <div
-            className={`${darkModeBg} absolute top-[120px] text-xl left-0 w-full flex flex-col items-center py-4`}
+            className={`${darkModeBg}  absolute top-[120px] text-xl left-0 w-full flex flex-col items-center text-center py-4`}
           >
             {/* LISTA */}
             <ul className="w-full">
@@ -306,24 +294,46 @@ const Navbar = () => {
                 <a href={`#${section.id}`} className={`${darkModeHoverItems}`}>
                   <li
                     key={section.id}
-                    className={`flex items-center justify-center p-6 w-full h-10 text-center ${hoverBgColor} transition-colors ${darkModeHoverItems}`}
+                    className={`font-bold flex items-center justify-center p-6 w-full h-10 text-center ${hoverBgColor} transition-colors ${darkModeHoverItems}`}
                   >
                     {section.label}
                   </li>
                 </a>
               ))}
+                <li className={`${hoverBgColor} p-2 transition-colors font-bold ${darkModeHoverItems}`}>
+                       <button
+                      onClick={handleAboutClick}
+                      className={`${darkModeHoverItems} cursor-pointer `}
+                    >
+                      About
+                    </button>
+                    {aboutOpen && (
+                      <div
+                        className={`${darkModeBg}absolute  top-[120px] left-0 w-full p-4 flex items-center gap-2`}
+                      >
+                        <About />
+                        <button
+                          onClick={handleAboutClick}
+                          className={`${darkModeItemsList} text-xl`}
+                        >
+                          ✖
+                        </button>
+                      </div>
+                    )}
+                </li>
+         
             </ul>
           </div>
         )}
         {/* ABOUT  */}
         {isSmallScreen && aboutOpen && (
           <div
-            className={`${darkModeBg} absolute top-[120px] left-0 w-full p-4 flex items-center gap-2`}
+            className={`${darkModeBg} absolute top-[120px] left-0 w-full p-4 flex items-center gap-2 pb-9`}
           >
             <About />
             <button
               onClick={handleAboutClick}
-              className={`${darkModeItemsList} text-xl`}
+              className={`${darkModeItemsList} text-2xl `}
             >
               ✖
             </button>
@@ -334,10 +344,10 @@ const Navbar = () => {
           <div
             className={`${darkModeBg} absolute top-[120px] left-0 w-full p-4 flex items-center gap-2`}
           >
-            <CountrySearchFilter />
+            <CountrySearchFilter/>
             <button
               onClick={handleSearchClick}
-              className={`${darkModeItemsList} text-xl`}
+              className={`${darkModeItemsList} text-3xl`}
             >
               ✖
             </button>
@@ -350,13 +360,13 @@ const Navbar = () => {
               className={`${darkModeBg} w-[80%] max-w-5xl max-h-[80vh] overflow-y-auto rounded-xl bg-zinc-900}`}
             >
               <button
-                className="flex justify-center p-2 w-full hover:cursor-pointer transition"
+                className="flex justify-center font-bold p-2 w-full hover:cursor-pointer transition"
                 onClick={limpiar}
               >
                 X Limpar
               </button>
               {carrito.length === 0 ? (
-                <p className="text-white text-center py-4">🛒 Carrito vacío</p>
+                <p className="font-bold text-center py-4">🛒 Carrito vacío</p>
               ) : (
                 <CardsCarrito />
               )}
