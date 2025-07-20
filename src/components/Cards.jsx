@@ -169,7 +169,7 @@ const Carousel = () => {
               <p className="text-black text-sm opacity-80 mb-2">{card.role}</p>
               <div className="flex flex-col justify-around items-center my-2">
                 <button
-                  className="my-2 px-5 py-2 bg-purple-700 text-white rounded font-bold text-sm shadow hover:bg-green-700 cursor-pointer transition"
+                  className="my-2 px-5 py-2 bg-purple-700 text-white rounded font-bold text-sm shadow-md hover:bg-green-700 cursor-pointer transition"
                   onClick={() => agregar(card)}
                 >
                   Agregar

@@ -141,7 +141,7 @@ const Navbar = () => {
         {!isSmallScreen && (
           <nav>
             {
-              <ul className="flex flex-wrap justify-center items-center gap-6 whitespace-nowrap text-2xl">
+              <ul className="flex font-bold flex-wrap justify-center items-center gap-6 whitespace-nowrap text-2xl">
                 {[
                   { label: "Developers", id: "devs" },
                   { label: "Testimonios", id: "testimonios" },
