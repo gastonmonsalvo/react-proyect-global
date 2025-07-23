@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { useCarrito } from "@/contexts/CarritoContext";
+import { Button } from "@/utils/Button";
 
 export default function CardsCarrito() {
-  const { carrito, contracts, setContracts } = useCarrito();
+  const { carrito, contracts, setContracts, limpiar, setCarrito } = useCarrito();
 
   // Filtrar solo los devs que no fueron contratados
   const devsSinContratar = carrito.filter(
@@ -21,7 +22,18 @@ export default function CardsCarrito() {
   const [form, setForm] = useState({ salario: "", lenguaje: "", horas: "" });
 
   const handleReject = (id) => {
-    setCards((prev) => prev.filter((card) => card.id !== id));
+    setCarrito((prevCarrito) => prevCarrito.filter((dev) => dev.id !== id)); // 🟣 eliminar del contexto
+    setCards((prev) => {
+      const isLastCard = prev.length === 1 && prev[0].id === id;
+      const hasContracts = contracts.length > 0;
+
+      if (isLastCard && !hasContracts) {
+        limpiar(); // 🟣 borrar todo
+        return [];
+      }
+
+      return prev.filter((card) => card.id !== id); // 🟣 eliminar localmente
+    });
   };
 
   const handleAccept = (dev) => {
@@ -57,21 +69,15 @@ export default function CardsCarrito() {
               alt={name}
               className="w-full h-64 object-cover rounded-xl mb-4"
             />
-            <h2 className="text-2xl font-bold text-center text-white mb-6">{name}</h2>
+            <h2 className="text-2xl font-bold text-center text-white mb-6">
+              {name}
+            </h2>
             <div className="flex justify-around w-full">
-              <button
-                onClick={() => handleReject(id)}
-                className="px-6 py-2 rounded-lg shadow font-semibold transition hover:brightness-110"
-                style={{ backgroundColor: "rgb(199, 125, 255)", color: "white" }}
-              >
-                Rechazar
+              <button onClick={() => handleReject(id)}>
+                <Button label={`Rechazar`} className="bg-[rgb(175,252,65)] text-black" />
               </button>
-              <button
-                onClick={() => handleAccept({ id, name, img })}
-                className="px-6 py-2 rounded-lg shadow font-semibold transition hover:brightness-110"
-                style={{ backgroundColor: "rgb(175, 252, 65)", color: "black" }}
-              >
-                Contratar
+              <button onClick={() => handleAccept({ id, name, img })}>
+                <Button label={`Contratar`} className="bg-[rgb(199,125,255)] text-white" />
               </button>
             </div>
           </div>
@@ -82,7 +88,9 @@ export default function CardsCarrito() {
       {selectedDev && (
         <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50">
           <div className="bg-zinc-800 p-6 rounded-2xl w-80 shadow-xl">
-            <h2 className="text-xl font-bold text-[rgb(175,252,65)] mb-4">Contrato laboral</h2>
+            <h2 className="text-xl font-bold text-[rgb(175,252,65)] mb-4">
+              Contrato laboral
+            </h2>
             <p className="mb-2">
               Para: <span className="font-semibold">{selectedDev.name}</span>
             </p>
@@ -116,9 +124,8 @@ export default function CardsCarrito() {
               </button>
               <button
                 onClick={handleSubmit}
-                className="bg-[rgb(199,125,255)] hover:bg-violet-400 text-black px-3 py-1 rounded-xl text-sm"
               >
-                Enviar contrato
+                <Button label={"Enviar Contrato"} className={`bg-[rgb(176,87,245)] hover:bg-[rgb(199,125,255)] text-black ml-6 mr-1`}/>
               </button>
             </div>
           </div>
@@ -137,7 +144,8 @@ export default function CardsCarrito() {
                 key={i}
                 className="bg-zinc-800 p-4 rounded-xl text-sm text-white shadow"
               >
-                <strong>{c.dev}</strong> — 💵 {c.salario} | 💻 {c.lenguaje} | ⏰ {c.horas}
+                <strong>{c.dev}</strong> — 💵 {c.salario} | 💻 {c.lenguaje} | ⏰{" "}
+                {c.horas}
               </li>
             ))}
           </ul>

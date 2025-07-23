@@ -8,7 +8,7 @@ const Footer = () => {
     const { darkMode } = useContext(ThemeContext);
     const darkModeSpan = darkMode ? "from-green-900 to-violet-600" : "from-green-500 to-violet-200";
     const darkModeCol1 = darkMode ? "from-violet-500 to-violet-700" : "to-violet-500 from-violet-700";
-    const darkModeH4 = darkMode ? "from-green-800 to-green-800 font-bold" : "to-green-600 font-bold from-green-600";
+    const darkModeH4 = darkMode ? "from-green-700 to-green-900 font-bold" : "to-green-700 font-bold from-green-500";
     const darkModeBg = darkMode ? "bg-purple-100" : "bg-zinc-900";
     const darkModeLi = darkMode ? "text-green-700 hover:text-violet-600" : "text-violet-400 hover:text-green-600";
     const darkModeCopy = darkMode ? "from-green-600 to-green-900" : "from-green-300 to-green-700";
@@ -25,18 +25,18 @@ const Footer = () => {
           <div className={`text-transparent bg-clip-text bg-gradient-to-l ${darkModeCol1} font-bold text-3xl`}>
             Origin<span className="ml-1">Dev</span>
           </div>
-          <div className="flex gap-4 mt-4">
-            <FaFacebook className="text-3xl transition-colors duration-300 hover:text-blue-500 cursor-pointer" />
-            <FaInstagram className="text-3xl transition-colors duration-300 hover:text-pink-500 cursor-pointer" />
-            <FaLinkedin className="text-3xl transition-colors duration-300 hover:text-blue-700 cursor-pointer" />
-            <FaTwitter className="text-3xl transition-colors duration-300 hover:text-sky-400 cursor-pointer" />
+          <div className="flex gap-4 mt-4 transform transition-colors duration-600">
+            <FaFacebook className="text-3xl transition-transform duration-500 hover:text-blue-500 hover:-translate-y-1 cursor-pointer" />
+            <FaInstagram className="text-3xl transition-transform duration-500 hover:text-pink-500 hover:-translate-y-1 cursor-pointer" />
+            <FaLinkedin className="text-3xl transition-transform duration-500 hover:text-blue-700 hover:-translate-y-1 cursor-pointer" />
+            <FaTwitter className="text-3xl transition-transform duration-500 hover:text-sky-400 hover:-translate-y-1 cursor-pointer" />
           </div>
         </div>
 
         {/* Columna 2 */}
         <div>
-          <h4 className={`text-transparent bg-clip-text bg-gradient-to-l ${darkModeH4} font-bold text-xl mb-4`}>Legal</h4>
-          <ul className="space-y-2 text-[15px] font-semibold">
+          <h4 className={`text-transparent bg-clip-text bg-gradient-to-b ${darkModeH4} font-bold text-xl mb-4`}>Legal</h4>
+          <ul className="space-y-2 text-[18px] font-semibold">
             {[
               "Privacidad",
               "Términos y Condiciones",
@@ -44,7 +44,7 @@ const Footer = () => {
               "Política de Cookies",
               "Propiedad Intelectual",
             ].map((item) => (
-              <li key={item} className={`${darkModeLi} cursor-pointer transition-colors duration-300`}>
+              <li key={item} className={`${darkModeLi} cursor-pointer transition-transform duration-500`}>
                 {item}
               </li>
             ))}
@@ -53,8 +53,8 @@ const Footer = () => {
 
         {/* Columna 3 */}
         <div className="flex flex-col items-start sm:items-center md:items-start text-left sm:text-center md:text-left">
-          <h4 className={`text-transparent bg-clip-text bg-gradient-to-l ${darkModeH4} font-bold text-xl mb-4`}>Empleos</h4>
-          <ul className="space-y-2 text-[15px] font-semibold">
+          <h4 className={`text-transparent bg-clip-text bg-gradient-to-b ${darkModeH4} font-bold text-xl mb-4`}>Empleos</h4>
+          <ul className="space-y-2 text-[18px] font-semibold">
             {[
               "Portal de Empleos",
               "Demandas de Devs",
@@ -63,7 +63,7 @@ const Footer = () => {
               "Oportunidades en tu Radar",
               "Eventos y Ferias Laborales",
             ].map((item) => (
-              <li key={item} className={`${darkModeLi} cursor-pointer transition-colors duration-300`}>
+              <li key={item} className={`${darkModeLi} cursor-pointer transition-transform duration-500`}>
                 {item}
               </li>
             ))}
@@ -72,8 +72,8 @@ const Footer = () => {
 
         {/* Columna 4 */}
         <div>
-          <h4 className={`text-transparent bg-clip-text bg-gradient-to-l ${darkModeH4} font-bold text-xl mb-4`}>Herramientas</h4>
-          <ul className="space-y-2 text-[15px] font-semibold">
+          <h4 className={`text-transparent bg-clip-text bg-gradient-to-b ${darkModeH4} font-bold text-xl mb-4`}>Herramientas</h4>
+          <ul className="space-y-2 text-[18px] font-semibold">
             {[
               "Cargar CV o Portfolio",
               "Recursos de formación",
@@ -82,7 +82,7 @@ const Footer = () => {
               "Analizador de perfil",
               "Tips para destacar en el mundo tech",
             ].map((item) => (
-              <li key={item} className={`${darkModeLi} cursor-pointer transition-colors duration-300`}>
+              <li key={item} className={`${darkModeLi} cursor-pointer transition-transform duration-500`}>
                 {item}
               </li>
             ))}
@@ -95,14 +95,13 @@ const Footer = () => {
       {/* Segunda sección */}
       <div className="flex flex-col sm:flex-row justify-around p-5 sm:p-6 max-w-full text-justify text-[14px] gap-4">
         <div>
-          <FaGooglePlay className="w-6 h-8 my-2 transition-colors duration-300 hover:text-green-500 cursor-pointer"/>
-          <FaApple className="w-6 h-8 my-4 transition-colors duration-300 hover:text-violet-500 cursor-pointer"/>
-          <span className="flex text-justify wy-2">
-            npm install app    
+          <FaGooglePlay className="w-6 h-8 my-2 transition-transform duration-500 hover:text-green-500 hover:translate-x-1 cursor-pointer"/>
+          <FaApple className="w-6 h-8 my-4 transition-transform duration-500 hover:text-violet-500 hover:translate-x-1 cursor-pointer"/>
+          <span className="flex text-justify wy-2 align-center">
+            npm install app
           </span>        
-          
         </div>
-        <div>
+        <div className="text-[18px] ">
           <span className={`inline-block text-transparent bg-clip-text bg-gradient-to-b ${darkModeSpan} p-1`}>
             ¿Sos programador o reclutador? Esta app es para vos. Si estás
             buscando tu próximo desafío profesional, querés sumar talento tech a
@@ -136,11 +135,11 @@ const Footer = () => {
       <hr className="border-gray-700 mt-1" />
 
       {/* Pie final */}
-      <div className="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-4 text-[13px]">
+      <div className="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-4 text-[14.5px]">
         <p className={`text-transparent bg-clip-text bg-gradient-to-b ${darkModeCopy} font-semibold text-center md:text-left`}>
           © {new Date().getFullYear()} OriginDev. All rights reserved.
         </p>
-        <div className="flex flex-wrap justify-center gap-6">
+        <div className="flex flex-wrap justify-center gap-6 text-[16px] ">
           {[
             { href: "/terms", text: "Términos y condiciones" },
             { href: "/privacy", text: "Privacidad" },
@@ -150,7 +149,7 @@ const Footer = () => {
             <a
               key={text}
               href={href}
-              className={`${darkModeLi} transition-colors duration-300`}
+              className={`${darkModeLi} transition-transform duration-500`}
             >
               {text}
             </a>

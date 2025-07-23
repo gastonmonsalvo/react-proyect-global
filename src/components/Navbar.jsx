@@ -8,7 +8,7 @@ import Link from 'next/link';
 import FormUser from "../pages/FormUser";
 
 import CardsCarrito from "./CardsCarrito";
-import { FaRegUserCircle, FaSearch, FaShoppingCart  } from "react-icons/fa";
+import { FaRegUserCircle, FaSearch, FaShoppingCart, FaTrashAlt  } from "react-icons/fa";
 import { FaRegMessage } from "react-icons/fa6";
 
                   
@@ -60,6 +60,7 @@ const Navbar = () => {
     : scrolled
       ? "bg-zinc-200"
       : "bg-stone-50";
+  const darkModeTitle = darkMode ? "from-violet-500 to-violet-700" : "to-violet-500 from-violet-700";
 
   /*  ABOUT  */
   const [aboutOpen, setAboutOpen] = useState(false);
@@ -134,14 +135,14 @@ const Navbar = () => {
         {!isSmallScreen ? (
           <div className="flex flex-col items-center justify-center gap-1 shrink-0 pr-4">
             <img src="/img/logo_proyect.png" alt="Logo" className="w-15" />
-            <span className="text-[rgb(203,101,224)] font-semibold whitespace-nowrap text-xl">
+            <span className={`text-transparent bg-clip-text bg-gradient-to-r ${darkModeTitle} font-semibold whitespace-nowrap text-xl`}>
               OriginDev
             </span>
           </div>
         ) : (
           <div className="flex flex-col items-center justify-center gap-1 shrink-0 pr-4">
             <img src="/img/logo_proyect.png" alt="Logo" className="w-10" />
-            <span className="text-[rgb(203,101,224)] font-semibold whitespace-nowrap text-lg">
+            <span className={`text-transparent bg-clip-text bg-gradient-to-r ${darkModeTitle} font-semibold whitespace-nowrap text-lg`}>
               OriginDev
             </span>
           </div>
@@ -199,7 +200,7 @@ const Navbar = () => {
             onClick={handleSearchClick}
             className="hover:scale-110 transition-transform relative"
           >
-            <FaSearch className="mt-1 text-3xl cursor-pointer"/>
+            <FaSearch className="my-1 text-3xl cursor-pointer"/>
 
           </button>
 
@@ -257,7 +258,7 @@ const Navbar = () => {
                     className={`px-4 py-2 font-semibold cursor-pointer transition-colors ${darkModeItemsList} ${hoverBgColor} ${darkModeHoverItems} active:bg-zinc-700`}
                   >
                     <Link href="/FormUser">
-                      <button>Login</button>
+                      <button className="cursor-pointer">Login</button>
                     </Link>
                   </li>
                   <li className="px-4 py-2 text-red-600 font-semibold cursor-pointer hover:bg-red-200 active:bg-zinc-700 transition-colors">
@@ -360,13 +361,13 @@ const Navbar = () => {
               className={`${darkModeBg} w-[80%] max-w-5xl max-h-[80vh] overflow-y-auto rounded-xl bg-zinc-900}`}
             >
               <button
-                className="flex justify-center font-bold p-2 w-full hover:cursor-pointer transition"
+                className="flex justify-center aling-center font-bold p-2 w-full hover:cursor-pointer transition text-[20px]"
                 onClick={limpiar}
               >
-                X Limpar
+                <p className="px-2 text-[20px] "><FaTrashAlt /></p> Limpar
               </button>
               {carrito.length === 0 ? (
-                <p className="font-bold text-center py-4">🛒 Carrito vacío</p>
+                <span className="font-bold text-center py-4 flex justify-center"><p className="px-2 text-[20px] "><FaShoppingCart /></p> Carrito vacío</span>
               ) : (
                 <CardsCarrito />
               )}

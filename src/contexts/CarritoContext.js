@@ -53,6 +53,7 @@ export const CarritoProvider = ({ children }) => {
         setMostrarCarrito,
         contracts,
         setContracts,
+        setCarrito,
       }}
     >
       {children}
