@@ -1,31 +1,29 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { ThemeContext } from "@/contexts/ThemeContext";
+
 
 const SplashScreen = ({ onFinish }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       onFinish();
-    }, 1000); // 1 segundos
+    }, 2000); // 2 segundos
 
     return () => clearTimeout(timer);
   }, [onFinish]);
 
+  const { darkMode } = useContext(ThemeContext);
+  const darkModeBg = darkMode ? "bg-white" : "bg-black";
+
   return (
-    <div style={{
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      height: "100vh",
-      backgroundColor: "#000",
-      color: "#fff",
-      fontSize: "2rem",
-      flexDirection: "column",
-      color: "purple"
-    }}>
+    <>
+    <div className={`flex justify-center items-center h-[100vh] ${darkModeBg} text-purple-600 font-bold text-4xl flex-col`}>
         <img src="img/logo_proyect.png" alt="Logo" style={{width: "100px"}}/>
         OD
     </div>
+    </>
   );
 };
+
 
 const App = () => {
   const [showSplash, setShowSplash] = useState(true);
