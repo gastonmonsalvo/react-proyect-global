@@ -1,7 +1,9 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, useContext } from "react";
 import DatePerson from "./DatePerson";
 import { useCarrito } from "@/contexts/CarritoContext";
 import { FaArrowCircleRight, FaArrowCircleLeft } from "react-icons/fa";
+import { Button } from "@/utils/Button";
+import { ThemeContext } from "@/contexts/ThemeContext";
 
 export const cardsData = [
   {
@@ -63,6 +65,10 @@ export const cardsData = [
 const CARDS_VISIBLE = 4;
 
 const Carousel = () => {
+  const { darkMode } = useContext(ThemeContext);
+  const darkModeButton = darkMode ? "bg-purple-700" : "bg-purple-700";
+  const darkModeButtonHover = darkMode ? "hover:bg-purple-600" : "hover:bg-purple-950";
+
   const wrapperRef = useRef(null);
   const containerRef = useRef(null);
   const cardRef = useRef(null);
@@ -158,7 +164,7 @@ const Carousel = () => {
             <div
               key={idx}
               ref={idx === 0 ? cardRef : null}
-              className="flex-shrink-0 w-[270px] max-h-[720px] bg-white/30 rounded-lg rounded-b-3xl shadow-md flex flex-col items-center pt-5 gap-4 font-sans backdrop-blur-md relative"
+              className={`flex-shrink-0 w-[270px] max-h-[720px] bg-white/30 rounded-lg rounded-b-3xl shadow-md flex flex-col items-center pt-5 gap-4 font-sans backdrop-blur-md relative`}
             >
               <img
                 src={card.img}
@@ -169,10 +175,9 @@ const Carousel = () => {
               <p className="text-black text-sm opacity-80 mb-2">{card.role}</p>
               <div className="flex flex-col justify-around items-center my-2">
                 <button
-                  className="my-2 px-5 py-2 bg-purple-700 text-white rounded font-bold text-sm shadow-md hover:bg-green-700 cursor-pointer transition"
                   onClick={() => agregar(card)}
                 >
-                  Agregar
+                  <Button label={`Agregar`} className={`${darkModeButton} ${darkModeButtonHover} text-white mb-2`} />
                 </button>
                 <div className="flex flex-col justify-center items-center object-cover">
                   <DatePerson userId={card.id} />
@@ -189,7 +194,7 @@ const Carousel = () => {
         className={`text-4xl mx-2 px-2 py-1 rounded transition-colors focus:outline-none bg-transparent border-none
         ${
           currentIndex >= maxIndex
-            ? "opacity-30 cursor-default"
+            ? "opacity-50 cursor-default"
             : "hover:text-purple-700 cursor-pointer"
         }`}
         aria-label="Ir a la diapositiva siguiente"

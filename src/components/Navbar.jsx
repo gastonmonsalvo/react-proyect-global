@@ -42,10 +42,10 @@ const Navbar = () => {
   const [isSmallScreen, setisSmallScreen] = useState(window.innerWidth < 1400);
   const { darkMode } = useContext(ThemeContext);
   const darkModeItemsList = darkMode
-    ? "text-[rgb(203,101,224)"
+    ? "text-[rgb(203,101,224)]"
     : "text-[rgb(175,252,65)]";
   const darkModeText = darkMode ? "text-zinc-700" : "text-white";
-  const darkModeBg = darkMode ? "bg-purple-100" : "bg-zinc-900";
+  const darkModeBg = darkMode ? "bg-zinc-200" : "bg-zinc-900";
   const darkModeSep = darkMode ? "border-violet-200" : "border-zinc-700";
   const darkModeHoverItems = darkMode
     ? "text-[rgb(203,101,224)] hover:text-[rgb(175,252,65)]"
@@ -135,14 +135,14 @@ const Navbar = () => {
         {!isSmallScreen ? (
           <div className="flex flex-col items-center justify-center gap-1 shrink-0 pr-4">
             <img src="/img/logo_proyect.png" alt="Logo" className="w-15" />
-            <span className={`text-transparent bg-clip-text bg-gradient-to-r ${darkModeTitle} font-semibold whitespace-nowrap text-xl`}>
+            <span className={`text-transparent bg-clip-text bg-gradient-to-l ${darkModeTitle} font-semibold whitespace-nowrap text-xl`}>
               OriginDev
             </span>
           </div>
         ) : (
           <div className="flex flex-col items-center justify-center gap-1 shrink-0 pr-4">
             <img src="/img/logo_proyect.png" alt="Logo" className="w-10" />
-            <span className={`text-transparent bg-clip-text bg-gradient-to-r ${darkModeTitle} font-semibold whitespace-nowrap text-lg`}>
+            <span className={`text-transparent bg-clip-text bg-gradient-to-l ${darkModeTitle} font-semibold whitespace-nowrap text-lg`}>
               OriginDev
             </span>
           </div>

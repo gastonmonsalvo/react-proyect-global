@@ -19,7 +19,7 @@ const SplashScreen = ({ onFinish }) => {
       color: "#fff",
       fontSize: "2rem",
       flexDirection: "column",
-      color: "violet"
+      color: "purple"
     }}>
         <img src="img/logo_proyect.png" alt="Logo" style={{width: "100px"}}/>
         OD

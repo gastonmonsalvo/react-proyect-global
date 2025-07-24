@@ -29,7 +29,7 @@ const CountrySearchFilter = () => {
   };
 
   return (
-    <div className={`max-w-md mx-auto p-6 rounded-2xl border transition-all shadow-lg backdrop-blur-md
+    <div className={`min-w-[30%] max-w-md mx-auto p-6 rounded-2xl border transition-all shadow-lg backdrop-blur-md
       ${theme === 'dark'
         ? 'bg-gradient-to-br from-[#0a0a0a] to-[#1a1a1a] text-white border-[#333]'
         : 'bg-gradient-to-br from-white to-gray-100 text-gray-900 border-gray-300'
@@ -52,8 +52,8 @@ const CountrySearchFilter = () => {
             placeholder="Buscar país…"
             value={searchTerm}
             onChange={handleSearchChange}
-            className={`w-full pl-12 pr-10 py-4 rounded-xl border outline-none text-sm font-medium
-              transition-all focus:scale-[1.02] placeholder:text-sm
+            className={`w-full pl-12 pr-10 py-4 rounded-xl border outline-none text-xl font-medium
+              transition-all focus:scale-[1.02] placeholder:text-xl
               ${theme === 'dark'
                 ? 'bg-white/5 text-white border-[#333] placeholder:text-gray-400 focus:border-violet-400 focus:ring-2 focus:ring-violet-500/20'
                 : 'bg-black/5 text-gray-900 border-gray-300 placeholder:text-gray-500 focus:border-purple-800 focus:ring-2 focus:ring-purple-800/10'
@@ -84,7 +84,7 @@ const CountrySearchFilter = () => {
         </div>
       </div>
 
-      <div className={`min-h-[200px] max-h-[300px] overflow-y-auto rounded-xl border p-2
+      <div className={`min-h-[220px] max-h-[340px] overflow-y-auto rounded-xl border p-2
         scrollbar-thin scrollbar-thumb-rounded-md transition
         ${theme === 'dark'
           ? 'bg-white/5 border-[#333] scrollbar-thumb-violet-400 scrollbar-track-[#1a1a1a]'
@@ -97,7 +97,7 @@ const CountrySearchFilter = () => {
               <li
                 key={index}
                 onClick={() => console.log(`País seleccionado: ${country}`)}
-                className={`cursor-pointer rounded-lg px-4 py-3 font-medium transition-all border border-transparent
+                className={`cursor-pointer rounded-lg px-4 py-4 font-medium text-xl transition-all border border-transparent
                   hover:translate-x-1 hover:shadow-md
                   ${theme === 'dark'
                     ? 'hover:bg-gradient-to-r from-lime-300/10 to-lime-300/5 hover:border-lime-300 hover:text-lime-300'

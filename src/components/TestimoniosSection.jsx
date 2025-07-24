@@ -33,7 +33,7 @@ const TestimoniosSlider = () => {
   return (
     <section className=" text-white py-16 px-4">
       <h2 className="text-2xl md:text-4xl font-bold text-center mb-4 text-[rgb(175,252,65)]">Testimonios</h2>
-      <h3 className="text-2xl text-center text-purple-500 mb-4 "> Vos podrias ser el siguiente!</h3>
+      <h3 className="text-2xl text-center text-purple-500 mb-4 "> ¡Vos podrias ser el siguiente!</h3>
       <div className="overflow-hidden max-w-5x1 mx-auto">
         <motion.div
           ref={containerRef}

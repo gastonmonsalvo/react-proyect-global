@@ -1,6 +1,16 @@
 import FoldeButton from "@/utils/FoldeButton";
+import { useContext } from "react";
+import { ThemeContext } from "../contexts/ThemeContext"; 
+
+
+
 
 function DatePerson({ userId }) {
+  const { darkMode } = useContext(ThemeContext);
+  const darkModeText = darkMode ? "text-gray-600" : "text-[rgb(175,252,65)]";
+  const darkModeBg = darkMode ? "bg-white-300" :"bg-[rgba(255, 255, 255, 0.3)]";
+  const darkModeButton = darkMode ? "bg-purple-700" : "bg-purple-700";
+  const darkModeButtonHover = darkMode ? "hover:bg-purple-600" : "hover:bg-purple-950"; 
   const Usuarios = [
     {
       id: 1,
@@ -36,7 +46,7 @@ function DatePerson({ userId }) {
       experiencieLevel: "Senior",
       timeAvailability: "Full Time",
       modeTheWork: "Hibrido",
-      location: "Buenos Aires(GBA-CABA)"
+      location: "Buenos Aires"
     },
     {
       id: 4,
@@ -119,8 +129,8 @@ function DatePerson({ userId }) {
   return (
     <>
       <div className="flex flex-col items-center justify-center">
-        <FoldeButton label={`Ver Perfil`}>
-          <div className="flex bg-violet-900 p-4 rounded text-green-500 flex-col gap-2 rounded-b-2xl">
+        <FoldeButton label={`Ver Perfil`} className={`${darkModeButton} ${darkModeButtonHover} `}>
+          <div className={`flex ${darkModeBg} py-6 pl-2 ${darkModeText} flex-col gap-2 rounded-b-2x1 font-semibold`}>
             <h2 className="text-xl font-bold">{user.name} {user.lastname}</h2>
             <p>{user.miniBio}</p>
             <ul className="list-disc pl-5">

@@ -22,17 +22,17 @@ export default function CardsCarrito() {
   const [form, setForm] = useState({ salario: "", lenguaje: "", horas: "" });
 
   const handleReject = (id) => {
-    setCarrito((prevCarrito) => prevCarrito.filter((dev) => dev.id !== id)); // 🟣 eliminar del contexto
+    setCarrito((prevCarrito) => prevCarrito.filter((dev) => dev.id !== id)); // eliminar del contexto
     setCards((prev) => {
       const isLastCard = prev.length === 1 && prev[0].id === id;
       const hasContracts = contracts.length > 0;
 
       if (isLastCard && !hasContracts) {
-        limpiar(); // 🟣 borrar todo
+        limpiar(); // borrar todo
         return [];
       }
 
-      return prev.filter((card) => card.id !== id); // 🟣 eliminar localmente
+      return prev.filter((card) => card.id !== id); // eliminar localmente
     });
   };
 

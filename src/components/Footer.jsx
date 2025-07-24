@@ -9,7 +9,7 @@ const Footer = () => {
     const darkModeSpan = darkMode ? "from-green-900 to-violet-600" : "from-green-500 to-violet-200";
     const darkModeCol1 = darkMode ? "from-violet-500 to-violet-700" : "to-violet-500 from-violet-700";
     const darkModeH4 = darkMode ? "from-green-700 to-green-900 font-bold" : "to-green-700 font-bold from-green-500";
-    const darkModeBg = darkMode ? "bg-purple-100" : "bg-zinc-900";
+    const darkModeBg = darkMode ? "bg-zinc-200" : "bg-zinc-900";
     const darkModeLi = darkMode ? "text-green-700 hover:text-violet-600" : "text-violet-400 hover:text-green-600";
     const darkModeCopy = darkMode ? "from-green-600 to-green-900" : "from-green-300 to-green-700";
 
@@ -95,13 +95,13 @@ const Footer = () => {
       {/* Segunda sección */}
       <div className="flex flex-col sm:flex-row justify-around p-5 sm:p-6 max-w-full text-justify text-[14px] gap-4">
         <div>
-          <FaGooglePlay className="w-6 h-8 my-2 transition-transform duration-500 hover:text-green-500 hover:translate-x-1 cursor-pointer"/>
-          <FaApple className="w-6 h-8 my-4 transition-transform duration-500 hover:text-violet-500 hover:translate-x-1 cursor-pointer"/>
-          <span className="flex text-justify wy-2 align-center">
+          <FaGooglePlay className="w-8 h-10 my-2 transition-transform duration-500 hover:text-green-800 hover:translate-x-1 cursor-pointer"/>
+          <FaApple className="w-8 h-10 my-5 transition-transform duration-500 hover:text-violet-900 hover:translate-x-1 cursor-pointer"/>
+          <span className="flex text-justify pb-2 align-center text-[16px] ">
             npm install app
           </span>        
         </div>
-        <div className="text-[18px] ">
+        <div className="text-[19px] ">
           <span className={`inline-block text-transparent bg-clip-text bg-gradient-to-b ${darkModeSpan} p-1`}>
             ¿Sos programador o reclutador? Esta app es para vos. Si estás
             buscando tu próximo desafío profesional, querés sumar talento tech a
